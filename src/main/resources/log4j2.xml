@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="DEFAULT_PATTERN">%highlight{[%-5level]} %style{[%date{ISO8601}] [%t] [%c{1}]}{Magenta} %msg %mdc%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${DEFAULT_PATTERN}"/>
+        </Console>
+
+        <Async name="ASYNC" includeLocation="true">
+            <AppenderRef ref="CONSOLE"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <!-- Default log level -->
+        <Root level="WARN">
+            <AppenderRef ref="ASYNC"/>
+        </Root>
+
+        <!-- Package-specific log level -->
+        <AsyncLogger name="hexagonal.template" level="WARN"/>
+        <AsyncLogger name="hexagonal.template" level="DEBUG"/>
+    </Loggers>
+
+</Configuration>
